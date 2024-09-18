@@ -3,11 +3,18 @@ const authControllers = require('../Controllers/auth.controllers');
 const router = express.Router();
 
 /**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Auth management
+ */
+/**
  * @openapi
- * /signup:
+ * /auth/signup:
  *   post:
  *     summary: Create a new user
  *     description: Create a new user in splitwise.
+ *     tags: [Auth]
  *     requestBody:
  *       required: true
  *       content:
@@ -28,7 +35,7 @@ const router = express.Router();
  *                 description: The password of the user.
  *                 example: securepassword123
  *     responses:
- *       201:
+ *       200:
  *         description: User created successfully
  *         content:
  *           application/json:
@@ -75,10 +82,11 @@ router.post('/signup',authControllers.registration);
 
 /**
  * @openapi
- * /login:
+ * /auth/login:
  *   post:
  *     summary: Login user
  *     description: Login user with email and password
+ *     tags: [Auth]
  *     requestBody:
  *       required: true
  *       content:
@@ -86,14 +94,14 @@ router.post('/signup',authControllers.registration);
  *           schema:
  *             type: object
  *             properties:
- *               email:
- *                 type: string
- *                 description: The email address of the user.
- *                 example: johndoe@example.com
- *               password:
- *                 type: string
- *                 description: The password of the user.
- *                 example: securepassword123
+ *              email:
+ *               type: string
+ *               description: The email address of the user.
+ *               example: johndoe@example.com
+ *              password:
+ *               type: string
+ *               description: The password of the user.
+ *               example: securepassword123
  *     responses:
  *      200:
  *         description: Successfully logged in

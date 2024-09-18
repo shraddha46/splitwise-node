@@ -3,8 +3,9 @@ var cors = require('cors');
 
 var mongoose = require("mongoose");
 const { swaggerUi, specs } = require('./swagger');
-
 var authRouter = require('./Routes/auth.routes');
+var userRouter = require('./Routes/user.routes');
+var expenseRouter = require('./Routes/expense.routes');
 
 var app = express();
 var port = 3001
@@ -19,12 +20,13 @@ mongoose.connection.on('error', function (error) {
     console.log("mongoose connection succesfully");
 });
 
-
 //API Documents path
 app.use('/splitwise-api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 //API routes
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
+app.use('/api/expense', expenseRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
