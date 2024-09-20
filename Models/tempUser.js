@@ -16,7 +16,7 @@ const tempUserSchema = new mongoose.Schema({
         required: true
     }
 }, {
-    colllection: 'TempUser',
+    collection: 'TempUser',
     timestamps: true
 });
 

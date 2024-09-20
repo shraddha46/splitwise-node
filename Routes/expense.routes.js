@@ -69,6 +69,40 @@ const router = express.Router();
  *         description: Internal server error
  */
 
-router.post('/addExpense',authMiddleware,expenseControllers.addExpense);
+router.post('/addExpense', authMiddleware, expenseControllers.addExpense);
+
+/**
+ * @openapi
+ * /expense/all:
+ *   get:
+ *     summary: Get all expenses
+ *     description: Retrieve a list of all expenses. Requires authorization.
+ *     tags: [Expense]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *      - in: header
+ *        name: Authorization
+ *        required: true
+ *        description: Bearer token for authentication
+ *        schema:
+ *         type: string
+ *         example: "Bearer YOUR_JWT_TOKEN"
+ *     responses:
+ *      200:
+ *       description: A list of expenses
+ *       content:
+ *        application/json:
+ *         schema:
+ *          type: array
+ *          items:
+ *           $ref: '#/components/schemas/Expense'
+ *      401:
+ *         description: Unauthorized. Invalid or missing token.
+ *      500:
+ *         description: Internal server error
+ */
+
+router.get('/all', authMiddleware, expenseControllers.getAllExpenses);
 
 module.exports = router;

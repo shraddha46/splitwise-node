@@ -16,8 +16,12 @@ const expenseSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    date: {
+        type: Date,
+        default: Date.now()
+    }
 }, {
-    colllection: 'Expense',
+    collection: 'Expense',
     timestamps: true
 });
 

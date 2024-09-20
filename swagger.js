@@ -23,6 +23,30 @@ const options = {
           bearerFormat: 'JWT',
         },
       },
+      schemas: {
+        Expense: {
+          type: 'object',
+          properties: {
+            id: {
+              type: 'string',
+              description: 'The auto-generated id of the expense',
+            },
+            description: {
+              type: 'string',
+              description: 'The description of the expense',
+            },
+            amount: {
+              type: 'number',
+              description: 'The amount of the expense',
+            },
+            date: {
+              type: 'string',
+              format: 'date',
+              description: 'The date of the created expense',
+            }
+          }
+        }
+      }
     },
     security: [],
   },
